@@ -1,0 +1,25 @@
+<div class="card py-3 mt-2">
+    <h3 class="title text-center fs-5 fw-medium my-3">update Superheroe</h3>
+    <form [formGroup]="superheroCreate" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2 p-4" >
+    <div class="form-floating mb-3">
+        
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="name">
+        <label for="floatingInput"> Name</label>
+      </div>
+      <div class="form-floating  mb-3">
+        <input type="text" class="form-control" id="floatingPassword" placeholder="Password" formControlName="power">
+        <label for="floatingPassword">Power</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="universe">
+        <label for="floatingInput">Universe</label>
+      </div>
+      <!-- <div class="form-floating">
+        <input type="date" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Creation Date</label>
+      </div> -->
+      <button type="submit" class="btn btn-success" [disabled]="this.superheroCreate.invalid">Update</button>
+    </form>
+      
+</div>
