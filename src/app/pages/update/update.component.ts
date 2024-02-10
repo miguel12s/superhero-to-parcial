@@ -1,4 +1,4 @@
-import { Component, Input, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SuperheroeService } from '../../services/superheroe.service';
 import { SuperHero } from '../../interfaces/superheroe';
@@ -8,20 +8,25 @@ import { SuperHero } from '../../interfaces/superheroe';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './update.component.html',
-  styleUrl: './update.component.css'
+  styleUrl: './update.component.css',
+
 })
-export class UpdateComponent {
+export class UpdateComponent implements OnChanges {
+  @Input() hero!:SuperHero
+  @Output() update=new EventEmitter<SuperHero[]>()
   
   public fb = inject(FormBuilder)
   public superheroCreate!:FormGroup
   public service=inject(SuperheroeService)
+
   constructor(){
     this.superheroCreate=this.initForm()
-    this.superheroCreate.patchValue({
-      name:this.hero.name,
-      power:this.hero.power,
-      universe:this.hero.universe
-    })
+
+  }
+ 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+    this.updateHero()
   }
 
   initForm(): FormGroup {
@@ -30,7 +35,7 @@ export class UpdateComponent {
         name: ['', Validators.required],
         power: ['', Validators.required],
         universe:['',Validators.required]
-      },
+      }
       
      
 
@@ -38,6 +43,18 @@ export class UpdateComponent {
     )
   }
   onSubmit(){
-    this.service.addSuperhero(this.superheroCreate.value)
+    const hero:SuperHero=this.superheroCreate.value
+   this.service.editHero(hero,this.hero.id)    
+
   }
+  updateHero(){
+    this.superheroCreate.patchValue({
+      name:this.hero.name,
+      power:this.hero.power,
+      universe:this.hero.universe
+    })    
+  }
+
+
+
 }

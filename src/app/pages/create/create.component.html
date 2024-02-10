@@ -3,11 +3,11 @@
     <form [formGroup]="superheroCreate" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2 p-4" >
     <div class="form-floating mb-3">
         
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="name">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="name" formControlName="nombres">
         <label for="floatingInput"> Name</label>
       </div>
       <div class="form-floating  mb-3">
-        <input type="text" class="form-control" id="floatingPassword" placeholder="Password" formControlName="power">
+        <input type="text" class="form-control" id="floatingPassword" placeholder="Password" formControlName="power" formControlName="p">
         <label for="floatingPassword">Power</label>
       </div>
 

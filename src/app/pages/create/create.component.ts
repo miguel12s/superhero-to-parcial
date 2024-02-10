@@ -20,9 +20,10 @@ export class CreateComponent {
   initForm(): FormGroup {
     return this.fb.group(
       {
-        name: ['', Validators.required],
-        power: ['', Validators.required],
-        universe:['',Validators.required]
+        nombres: ['', Validators.required],
+        profesion: ['', Validators.required],
+        correo:['',Validators.required],
+        foto:['',Validators.required]
       },
       
      

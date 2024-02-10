@@ -1,18 +1,20 @@
 
 <div class="container-fluid">
-  <!-- <button (click)="onCreate()">Crear</button> -->
   <div class="row">
-    <div class="col-8">
-      <div class="row">
+    <!-- <div class="container-button  d-flex justify-content-end "> -->
+    <button  (click)="onCreate()" class="btn btn-primary mt-3">Crear</button>
+  <!-- </div> -->
+    <div class="col-lg-8 col-sm-12 col-md-6">
+      <div class="row ">
         
-          <app-superhero class="col-4 mb-2 rounded-3" (edit)="edit($event)" *ngFor="let superhero of superheroes" [superheroe]="superhero"></app-superhero>
+          <app-superhero class="col-lg-4 col-md-6 col-sm-12 mb-2 rounded-3" (edit)="edit($event)" *ngFor="let superhero of superheroes" [superheroe]="superhero"></app-superhero>
 
         
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-md-8 col-sm-12">
       <app-create *ngIf="create" ></app-create>
-      <app-update *ngIf="!create" [hero]="hero"></app-update>
+      <app-update *ngIf="!create" [hero]="hero" (onSubmit)="updateHero($event)"></app-update>
     </div>
   </div>
   </div>

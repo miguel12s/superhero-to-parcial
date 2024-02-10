@@ -50,8 +50,30 @@ export class SuperheroeService {
     return this.superheroes
   }
 
-  editHero(id:number){
-    // const heroe:SuperHero=this.superheroes.filter(superheroe=>superheroe.id=id)
-    // return heroe
+  editHero(superhero:SuperHero,id:number){
+    
+    console.log(superhero)
+    const indice=this.superheroes.findIndex((hero:SuperHero)=>
+    hero.id===id
+    )
+
+    if(id!==-1){
+      superhero.id=id
+      this.superheroes[indice]=superhero
+      console.log(this.superheroes);    
+    }else{
+      console.error('error al encontrar')
+    }
+  
+    
+    
   }
+
+  delete(id:number){
+    const indice=this.superheroes.map((hero:SuperHero)=>
+    hero.id
+    ).indexOf(id)
+    
+    this.superheroes.splice(indice,1)
+}
 }
